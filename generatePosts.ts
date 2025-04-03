@@ -47,13 +47,9 @@ async function fetchTrendingTopics(): Promise<
     "https://www.thephoblographer.com/feed/",
     "https://www.petapixel.com/feed/",
     "https://www.fstoppers.com/feed/",
-    "https://www.digital-photography-school.com/feed/",
     "https://www.photofocus.com/feed/",
-    "https://www.imaging-resource.com/news/feed/",
     "https://www.popphoto.com/rss/",
-    "https://www.theverge.com/photography/rss/index.xml",
     "https://www.nationalgeographic.com/photography/photo-of-the-day/rss",
-    "https://www.wired.com/category/photo/rss",
     // Add more feeds if desired.
   ];
 
