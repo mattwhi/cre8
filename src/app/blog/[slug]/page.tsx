@@ -19,8 +19,31 @@ export async function generateMetadata(
   const { slug } = await params;
   const post = await getPost(slug).then((res) => res);
   return {
-    title: post.title,
+    title: `${post.title} | Cre8 Photography`,
     description: post.metaDescription || post.summary,
+    alternates: {
+      canonical: `https://cre8photography.co.uk/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: `${post.title} | Cre8 Photography`,
+      description: post.metaDescription || post.summary,
+      url: `https://cre8photography.co.uk/blog/${post.slug}`,
+      type: "article",
+      images: [
+        {
+          url: post.image,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Cre8 Photography`,
+      description: post.metaDescription || post.summary,
+      site: "@cre8",
+      creator: "@cre8",
+      images: [post.image],
+    },
   };
 }
 
