@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 
 export default async function GalleryPage() {
-  const photosDir = path.join(process.cwd(), "public/photos");
+  const photosDir = path.join(process.cwd(), "public/photos/gallery");
   const files = await fs.readdir(photosDir);
 
   const images = files.filter((file) =>

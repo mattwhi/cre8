@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function GalleryPage({ images }: Props) {
-  const photosDir = path.join(process.cwd(), "public/photos");
+  const photosDir = path.join(process.cwd(), "public/photos/gallery");
 
   const [modalImg, setModalImg] = useState<string | null>(null);
 
@@ -33,10 +33,10 @@ export default function GalleryPage({ images }: Props) {
           <div
             key={i}
             className="relative group cursor-pointer"
-            onClick={() => setModalImg(`/photos/${img}`)}
+            onClick={() => setModalImg(`/photos/gallery/${img}`)}
           >
             <Image
-              src={`/photos/${img}`}
+              src={`/photos/gallery/${img}`}
               alt={`cre8 photo ${i}`}
               width={600}
               height={400}

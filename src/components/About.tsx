@@ -6,7 +6,7 @@ export default function AboutPage() {
           {/* Profile Image */}
           <div className="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
             <img
-              src="/photos/about-me.jpg" // Place your image in the public/photos folder
+              src="/photos/profile/matt_white_profile.jpg" // Place your image in the public/photos folder
               alt="About Me"
               className="w-48 h-48 rounded-full object-cover shadow-xl border-4 border-gray-100 dark:border-gray-800"
             />
