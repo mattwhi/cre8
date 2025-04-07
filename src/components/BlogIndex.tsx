@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useMemo } from "react";
+import SocialShareButtons from "./SocialShareButtons"; // adjust the import path as needed
+import FormattedDate from "./FormattedDate";
 
 interface Post {
   slug: string;
@@ -16,13 +18,21 @@ interface Post {
 export default function BlogIndex({ posts }: { posts: Post[] }) {
   const [query, setQuery] = useState("");
 
+  // Sort posts by date (newest first)
+  const sortedPosts = useMemo(() => {
+    return [...posts].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  }, [posts]);
+
+  // Filter posts based on search query
   const filteredPosts = useMemo(() => {
-    return posts.filter(
+    return sortedPosts.filter(
       (post) =>
         post.title.toLowerCase().includes(query.toLowerCase()) ||
         post.summary.toLowerCase().includes(query.toLowerCase())
     );
-  }, [query, posts]);
+  }, [query, sortedPosts]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -32,7 +42,6 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
           Discover thoughts, stories, and snapshots from creators in the cre8
           community.
         </p>
-
         <input
           type="text"
           placeholder="Search posts..."
@@ -42,7 +51,6 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
         />
       </div>
 
-      {/* Masonry Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredPosts.map((post) => (
           <div
@@ -70,7 +78,7 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
               >
                 {post.title}
               </Link>
-              <p className="text-sm text-gray-400">{post.date}</p>
+              <FormattedDate date={post.date} />
               <p className="text-gray-600 dark:text-gray-300">{post.summary}</p>
               <div className="flex flex-wrap gap-2 mt-2">
                 {post.tags.map((tag) => (
@@ -82,8 +90,15 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
                   </span>
                 ))}
               </div>
+
+              {/* Social Share Buttons */}
+              <SocialShareButtons
+                url={`https://cre8photography.co.uk/blog/${post.slug}`}
+                title={post.title}
+              />
+
               <Link
-                href={`/blog/${post.slug}`}
+                href={`https://cre8photography.co.uk/blog/${post.slug}`}
                 className="mt-4 text-sm inline-block px-4 py-2 rounded-full bg-black text-white hover:bg-gray-800 shadow-glow transition"
               >
                 Read More →
@@ -91,17 +106,6 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* CTA Section */}
-      <div className="text-center mt-20">
-        <h2 className="text-3xl font-bold mb-4">Like what you see?</h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-6">
-          Join the cre8 newsletter for updates & inspiration.
-        </p>
-        <button className="px-6 py-3 rounded-full font-semibold text-white bg-black hover:bg-gray-900 shadow-glow transition-all">
-          Subscribe Now
-        </button>
       </div>
     </div>
   );

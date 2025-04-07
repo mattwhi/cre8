@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Slider from "../components/Slider";
 export const metadata = {
-  title: "cre8",
-  description: "cre8 photography",
+  title: "cre8 | The Home of Photography",
+  description:
+    "Discover inspiring stories, creative insights, and community updates in the cre8 community. Explore engaging blog posts that capture the innovative spirit and personal journeys of our creators",
   image: "/images/cre8.jpg",
   date: "2022-01-01",
   type: "website",
