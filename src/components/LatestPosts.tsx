@@ -8,9 +8,11 @@ import FormattedDate from "./FormattedDate";
 import SocialShareButtons from "./SocialShareButtons";
 
 export default function LatestPosts({ posts }: { posts: Post[] }) {
-  // Get the three most recent posts
+  // Sort posts by date (newest first) and then take the first 3 posts
   const latestPosts = useMemo(() => {
-    return [...posts].slice(0, 3);
+    return [...posts]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 3);
   }, [posts]);
 
   return (
