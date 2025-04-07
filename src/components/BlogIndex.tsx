@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useMemo } from "react";
-import SocialShareButtons from "./SocialShareButtons"; // adjust the import path as needed
 import FormattedDate from "./FormattedDate";
 
 interface Post {
@@ -17,15 +16,16 @@ interface Post {
 
 export default function BlogIndex({ posts }: { posts: Post[] }) {
   const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(20);
 
-  // Sort posts by date (newest first)
+  // Sort posts by date (latest first)
   const sortedPosts = useMemo(() => {
     return [...posts].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
   }, [posts]);
 
-  // Filter posts based on search query
+  // Filter posts based on the search query (applied on the sorted posts)
   const filteredPosts = useMemo(() => {
     return sortedPosts.filter(
       (post) =>
@@ -33,6 +33,15 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
         post.summary.toLowerCase().includes(query.toLowerCase())
     );
   }, [query, sortedPosts]);
+
+  // Only display the first visibleCount posts
+  const postsToDisplay = useMemo(() => {
+    return filteredPosts.slice(0, visibleCount);
+  }, [filteredPosts, visibleCount]);
+
+  const handleSeeMore = () => {
+    setVisibleCount((prev) => prev + 20);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -42,6 +51,7 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
           Discover thoughts, stories, and snapshots from creators in the cre8
           community.
         </p>
+
         <input
           type="text"
           placeholder="Search posts..."
@@ -51,8 +61,9 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
         />
       </div>
 
+      {/* Posts Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredPosts.map((post) => (
+        {postsToDisplay.map((post) => (
           <div
             key={post.slug}
             className="rounded-xl shadow-lg overflow-hidden bg-white dark:bg-black transition-all hover:scale-[1.02]"
@@ -70,7 +81,6 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
                 />
               </Link>
             )}
-
             <div className="p-4 flex flex-col gap-2">
               <Link
                 href={`/blog/${post.slug}`}
@@ -90,15 +100,8 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
                   </span>
                 ))}
               </div>
-
-              {/* Social Share Buttons */}
-              <SocialShareButtons
-                url={`https://cre8photography.co.uk/blog/${post.slug}`}
-                title={post.title}
-              />
-
               <Link
-                href={`https://cre8photography.co.uk/blog/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className="mt-4 text-sm inline-block px-4 py-2 rounded-full bg-black text-white hover:bg-gray-800 shadow-glow transition"
               >
                 Read More →
@@ -107,6 +110,18 @@ export default function BlogIndex({ posts }: { posts: Post[] }) {
           </div>
         ))}
       </div>
+
+      {/* See More Button */}
+      {visibleCount < filteredPosts.length && (
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={handleSeeMore}
+            className="px-6 py-3 rounded-full font-semibold text-white bg-black hover:bg-gray-900 shadow-glow transition-all"
+          >
+            See More
+          </button>
+        </div>
+      )}
     </div>
   );
 }
