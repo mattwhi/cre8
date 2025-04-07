@@ -2,6 +2,8 @@ import { getAllPostSlugs, getPost } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
+import Comments from "@/components/Disqus";
+import SocialShareButtons from "@/components/SocialShareButtons";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const slugs = getAllPostSlugs();
@@ -81,6 +83,19 @@ export default async function BlogPostPage({
           <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
         </div>
       </article>
+      <div className="max-w-3xl mx-auto px-4 py-8 prose prose-invert">
+        <SocialShareButtons
+          url={`https://cre8photography.co.uk/blog/${post.slug}`}
+          title={post.title}
+        />
+      </div>
+      <div className="max-w-3xl mx-auto px-4 py-8 prose prose-invert">
+        <Comments
+          postSlug="my-post-slug"
+          postIdentifier="my-post-unique-id"
+          postTitle="My Blog Post Title"
+        />
+      </div>
     </>
   );
 }
