@@ -49,7 +49,6 @@ async function fetchTrendingTopics(): Promise<
     "https://www.fstoppers.com/feed/",
     "https://www.photofocus.com/feed/",
     "https://www.popphoto.com/rss/",
-    "https://www.nationalgeographic.com/photography/photo-of-the-day/rss",
     // Add more feeds if desired.
   ];
 
