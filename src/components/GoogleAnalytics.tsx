@@ -1,24 +1,22 @@
-import Script from "next/script";
+"use client";
 
-export default function GoogleAnalytics() {
-  return (
-    <>
-      {/* Load the GA library */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-4J8P78JZBF`}
-      />
-      {/* Initialize GA */}
-      <Script id="ga-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-4J8P78JZBF, {
-            page_path: window.location.pathname,
-          });
-        `}
-      </Script>
-    </>
-  );
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import ReactGA from "react-ga4";
+
+export default function AnalyticsWrapper() {
+  const pathname = usePathname();
+  const MEASUREMENT_ID = "G-4J8P78JZBF"; // Replace with your GA4 Measurement ID
+
+  useEffect(() => {
+    // Initialize GA4 when the component mounts (client side only)
+    ReactGA.initialize(MEASUREMENT_ID);
+  }, []);
+
+  useEffect(() => {
+    // Send a pageview every time the pathname changes
+    ReactGA.send({ hitType: "pageview", page: pathname });
+  }, [pathname]);
+
+  return null;
 }
