@@ -1,5 +1,12 @@
 import Head from "next/head";
 import Slider from "../components/Slider";
+import LatestPosts from "@/components/LatestPosts";
+import { fetchPostsFromSource, Post } from "@/lib/fetchPosts";
+
+interface HomeProps {
+  posts: Post[];
+}
+
 export const metadata = {
   title: "cre8 | The Home of Photography",
   description:
@@ -21,10 +28,14 @@ export const metadata = {
 };
 
 export default function Home() {
+  const posts: Post[] = fetchPostsFromSource();
   return (
     <>
-      <div className="relative">
+      <div className="relative mb-10">
         <Slider />
+      </div>
+      <div className="container mx-auto px-4">
+        <LatestPosts posts={posts} />
       </div>
     </>
   );
