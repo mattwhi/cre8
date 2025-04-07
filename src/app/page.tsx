@@ -15,7 +15,6 @@ export const metadata = {
   creator: "@cre8",
   card: "summary_large_image",
   url: "https://cre8photography.co.uk",
-  canonical: "https://cre8photography.co.uk",
   robots: "index, follow",
   keywords: "cre8, photography, cre8 photography",
 };

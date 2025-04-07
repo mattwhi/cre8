@@ -21,9 +21,6 @@ export async function generateMetadata(
   return {
     title: `${post.title} | Cre8 Photography`,
     description: post.metaDescription || post.summary,
-    alternates: {
-      canonical: `https://cre8photography.co.uk/blog/${post.slug}`,
-    },
     openGraph: {
       title: `${post.title} | Cre8 Photography`,
       description: post.metaDescription || post.summary,
