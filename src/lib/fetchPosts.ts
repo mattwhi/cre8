@@ -9,6 +9,7 @@ export interface Post {
   summary: string;
   tags: string[];
   image: string;
+  featured?: boolean;
 }
 
 export function fetchPostsFromSource(): Post[] {
@@ -29,6 +30,7 @@ export function fetchPostsFromSource(): Post[] {
       summary: data.summary,
       tags: data.tags || [],
       image: data.image || "",
+      featured: data.featured || false,
     } as Post;
   });
 

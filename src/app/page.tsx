@@ -2,13 +2,14 @@ import Head from "next/head";
 import Slider from "../components/Slider";
 import LatestPosts from "@/components/LatestPosts";
 import { fetchPostsFromSource, Post } from "@/lib/fetchPosts";
+import FeaturedPostsCarousel from "@/components/FeaturedPostCarousel";
 
 interface HomeProps {
   posts: Post[];
 }
 
 export const metadata = {
-  title: "cre8 | The Home of Photography",
+  title: "Cre8 | The Home of Photography",
   description:
     "Discover inspiring stories, creative insights, and community updates in the cre8 community. Explore engaging blog posts that capture the innovative spirit and personal journeys of our creators",
   image: "/images/cre8.jpg",
@@ -36,6 +37,9 @@ export default function Home() {
       </div>
       <div className="container mx-auto px-4">
         <LatestPosts posts={posts} />
+      </div>
+      <div className="container mx-auto px-4">
+        <FeaturedPostsCarousel posts={posts} />
       </div>
     </>
   );
