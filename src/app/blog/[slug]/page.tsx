@@ -65,7 +65,7 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <article className="text-white">
+      <article className="text-white bg-gray-800">
         {post.image && (
           <Image
             src={post.image}
