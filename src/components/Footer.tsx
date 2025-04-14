@@ -56,7 +56,7 @@ export default function Footer() {
             <Instagram />
           </a>
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/cre8photographywebsite"
             target="_blank"
             rel="noreferrer"
             className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition"
