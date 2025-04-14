@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import CanonicalHead from "@/components/CanonicalHead";
+import "yet-another-react-lightbox/styles.css";
 
 export default function RootLayout({
   children,

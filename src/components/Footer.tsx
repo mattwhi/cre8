@@ -31,7 +31,7 @@ export default function Footer() {
           >
             Blog
           </Link>
-          <Link
+          {/* <Link
             href="/gallery"
             className="text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition"
           >
@@ -42,7 +42,7 @@ export default function Footer() {
             className="text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition"
           >
             Contact
-          </Link>
+          </Link> */}
         </div>
 
         {/* Right: Socials */}
