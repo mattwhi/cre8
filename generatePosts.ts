@@ -37,7 +37,6 @@ async function fetchTrendingTopics(): Promise<
   // Define multiple RSS feed URLs
   const feedUrls = [
     "https://news.google.com/rss/search?q=photography&hl=en-US&gl=US&ceid=US:en",
-    "https://www.flickr.com/services/feeds/photos_public.gne?tags=photography&format=rss2",
     "https://www.35mmc.com/feed/",
     "http://feeds.feedburner.com/4kShooters",
     "http://www.a2zcamerablog.com/feed/",
