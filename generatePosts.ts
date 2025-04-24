@@ -186,7 +186,7 @@ async function generateBlogPost(topic: {
       return;
     }
 
-    const prompt = `Write a 2000 word markdown formatted blog post titled "${topic.title}" for photographers. Include clear paragraphs, at least one markdown image tag (e.g., ![alt text](/path/to/image)) within the content, an introduction, practical tips, and a conclusion. Ensure the content is well-spaced and visually appealing.`;
+    const prompt = `Write a 2000 word markdown formatted blog post titled "${topic.title}" for photographers. Include clear paragraphs, at least one markdown image tag (e.g., ![alt text](/path/to/image)) within the content, an introduction, practical tips, and a conclusion. Ensure the content is well-spaced and visually appealing. please also make this SEO friendly with keywords highlighted and external links if possible.`;
 
     console.log(`Generating blog post for: ${topic.title}`);
     const response = await openai.chat.completions.create({
