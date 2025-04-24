@@ -262,13 +262,8 @@ ${content}
 async function generateAll() {
   let dynamicTopics = await fetchTrendingTopics();
   if (dynamicTopics.length === 0) {
-    dynamicTopics = [
-      {
-        title: "Static Topic Example",
-        summary: "A fallback topic in photography.",
-        tags: ["photography", "fallback"],
-      },
-    ];
+    console.log("No dynamic topics fetched. Exiting...");
+    return;
   }
 
   // Randomize the topics array to vary the order daily.
